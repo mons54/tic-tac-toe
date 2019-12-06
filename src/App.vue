@@ -99,16 +99,6 @@ export default {
       setTimeout(() => this.showResult = true, 2000)
     },
     checkFinish () {
-      let values = []
-      this.values.forEach(row => {
-        row.forEach(col => {
-          if (col === null)
-            values.push(true)
-        })
-      })
-
-      if (!values.length)
-        return this.finish(null)
 
       for (let i = 0; i < this.nbCase; i++) {
         values = []
@@ -141,6 +131,17 @@ export default {
 
       if (this.isEgual(values))
         return this.finish(this.isPlayer)
+        
+      let values = []
+      this.values.forEach(row => {
+        row.forEach(col => {
+          if (col === null)
+            values.push(true)
+        })
+      })
+
+      if (!values.length)
+        return this.finish(null)
     },
     isEgual(data) {
       if (data.every(value => value === 'x'))
